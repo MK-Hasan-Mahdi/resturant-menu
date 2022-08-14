@@ -1,15 +1,19 @@
 import React from 'react';
 
-const Navbar = ({ filterItem }) => {
+const Navbar = ({ filterItem, menuList }) => {
     return (
         <>
             <div className='flex justify-center mt-10'>
-                <div className="btn-group">
-                    <button onClick={() => setMenuData(Menu)} className="btn btn-active">All</button>
-                    <button onClick={() => filterItem("breakfast")} className="btn">Breakfast</button>
-                    <button onClick={() => filterItem("lunch")} className="btn">Lunch</button>
-                    <button onClick={() => filterItem("dinner")} className="btn">Dinner</button>
-                </div>
+                {
+                    menuList.map(menu => {
+                        return (
+                            <div className="btn-group">
+                                <button onClick={() => filterItem(menu)} className="btn">{menu}</button>
+                            </div>
+                        )
+                    })
+                }
+
             </div>
         </>
     );

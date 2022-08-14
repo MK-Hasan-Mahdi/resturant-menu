@@ -5,15 +5,24 @@ import Navbar from './Navbar';
 
 const Resturant = () => {
     const [menuData, setMenuData] = useState(Menu);
-    // console.log(menuData);
+
     // new array created for making unique category ; category name was repeated
     const uniqueList = [
-        ...new Set(Menu.map(uniq => {
-            return uniq.category;
-        }))];
-    console.log(uniqueList);
+        ...new Set(
+            Menu.map(uniq => {
+                return uniq.category;
+            })
+        ),
+        "All",
+    ];
+    const [menuList, setMenuList] = useState(uniqueList);
+
     // item filtered for category wise menu show
     const filterItem = (category) => {
+        if (category === "All") {
+            setMenuData(Menu);
+            return;
+        }
         const updatedItemList = Menu.filter((currentElement) => {
             return currentElement.category === category;
         });
@@ -21,7 +30,7 @@ const Resturant = () => {
     }
     return (
         <>
-            <Navbar filterItem={filterItem} />
+            <Navbar filterItem={filterItem} menuList={menuList} />
             <MenuData data={menuData} />
         </>
     );

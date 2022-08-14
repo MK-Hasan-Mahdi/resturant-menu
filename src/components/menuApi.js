@@ -79,5 +79,13 @@ const Menu = [
         price: 10,
         description: "loremloremlorem"
     },
+    {
+        id: 10,
+        image: "images/breakfast2.jpg",
+        name: "Hot",
+        category: "Hot",
+        price: 10,
+        description: "loremloremlorem"
+    }
 ];
 export default Menu;
