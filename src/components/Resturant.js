@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import Menu from './menuApi';
 import MenuData from './MenuData';
+import Navbar from './Navbar';
 
 const Resturant = () => {
     const [menuData, setMenuData] = useState(Menu);
     // console.log(menuData);
+    // new array created for making unique category ; category name was repeated
+    const uniqueList = [
+        ...new Set(Menu.map(uniq => {
+            return uniq.category;
+        }))];
+    console.log(uniqueList);
+    // item filtered for category wise menu show
     const filterItem = (category) => {
         const updatedItemList = Menu.filter((currentElement) => {
             return currentElement.category === category;
@@ -13,14 +21,7 @@ const Resturant = () => {
     }
     return (
         <>
-            <div className='flex justify-center mt-10'>
-                <div className="btn-group">
-                    <button onClick={() => setMenuData(Menu)} className="btn btn-active">All</button>
-                    <button onClick={() => filterItem("breakfast")} className="btn">Breakfast</button>
-                    <button onClick={() => filterItem("lunch")} className="btn">Lunch</button>
-                    <button onClick={() => filterItem("dinner")} className="btn">Dinner</button>
-                </div>
-            </div>
+            <Navbar filterItem={filterItem} />
             <MenuData data={menuData} />
         </>
     );
